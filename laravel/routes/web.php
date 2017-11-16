@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/lugas', function () {
+
+Route::any('/lugas', function () {
     return view('lugas');
 });
