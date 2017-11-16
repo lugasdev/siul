@@ -1,0 +1,14 @@
+{
+    "require": {
+        "monolog/monolog": "*",
+        "curl/curl": "*",
+        "twig/twig": "*",
+        "dompdf/dompdf": "*",
+        "phpfastcache/phpfastcache": "*",
+        "google/recaptcha": "*",
+        "rollbar/rollbar": "*"
+    },
+    "config": {
+        "vendor-dir": "lib/src"
+    }
+}
