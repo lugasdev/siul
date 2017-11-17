@@ -24,10 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $name = Auth::user();
-        $id = Auth::id();
-//         print_r($id);
-// die;
-        return view('home', array("name" => $name->name ));
+        $auth_ = Auth::user();
+
+        return view('home', array("name" => $auth_->name, "id" => $auth_->id ));
     }
 }
