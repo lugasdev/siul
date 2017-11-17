@@ -1,23 +1,29 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+@section('page_title') DashBoard @endsection
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    {{ $id }} {{ $name }}
-                    You are logged in!
-                </div>
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+    <li class="breadcrumb-item active">Dash Board</li>
+@endsection
+
+@section('content')
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-block">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                {{ $id }} {{ $name }}
+                You are logged in!
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
 @endsection

@@ -28,4 +28,11 @@ class HomeController extends Controller
 
         return view('home', array("name" => $auth_->name, "id" => $auth_->id ));
     }
+
+    public function lugas()
+    {
+        $auth_ = Auth::user();
+        return view('home', array("name" => $auth_->name, "id" => "x" ));
+    }
+
 }

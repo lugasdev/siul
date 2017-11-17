@@ -22,3 +22,4 @@ Route::any('/lugas', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/lugas', 'HomeController@lugas')->name('home/lugas');
