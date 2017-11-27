@@ -17,7 +17,8 @@
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png"> -->
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('monster/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    {{--  <link href="{{ asset('monster/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">  --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link href="{{ asset('monster/css/style.css') }}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
@@ -49,7 +50,76 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <header class="topbar">
-            <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->
+                        <b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="{{ asset('monster/assets/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span>
+                            <!-- dark Logo text -->
+                            <img src="{{ asset('monster/assets/images/logo-text.png') }}" alt="homepage" class="dark-logo" />
+                        </span>
+                    </a>
+                </div>
+                {{--  <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>  --}}
+
+                <div class=" navbar-collapse" id="navbarSupportedContent">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item hidden-sm-down">
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0 navbar-profile">
+                        @guest
+                            <li class="nav-item"><a href="{{ route('login') }}">Login</a></li>
+                            <li class="nav-item"><a href="{{ route('register') }}">Register</a></li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="{{ get_gravatar( Auth::user()->email ) }}" alt="user" class="profile-pic m-r-5" /> {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('users/profile') }}">Profile</a>
+                                    <a class="dropdown-item" href="#">Change Password</a>
+                                    <div class="dropdown-divider"></div>
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </nav>
+
+            {{--  <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
@@ -95,7 +165,6 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{--  <img src="{{ asset('monster/assets/images/users/1.jpg') }}" alt="user" class="profile-pic m-r-5" /> {{ Auth::user()->name }}  --}}
                                     <img src="{{ get_gravatar( Auth::user()->email ) }}" alt="user" class="profile-pic m-r-5" /> {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -113,18 +182,13 @@
                                         {{ csrf_field() }}
                                     </form>
 
-                                    {{--  <a class="dropdown-item" href="#"></a>  --}}
                                 </div>
                             </li>
                         @endguest
-                        {{--  <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ asset('monster/assets/images/users/1.jpg') }}" alt="user" class="profile-pic m-r-5" />Markarn Doe
-                            </a>
-                        </li>  --}}
                     </ul>
                 </div>
-            </nav>
+            </nav>  --}}
+
         </header>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
@@ -139,10 +203,10 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li>
-                            <a href="index.html" class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i>Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a href="pages-profile.html" class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i>Profile</a>
+                            <a href="{{ route('users') }}" class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i>Users</a>
                         </li>
                         <li>
                             <a href="table-basic.html" class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i>Basic Table</a>
@@ -201,7 +265,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-block">
+                            <div class="card-header">
+                                Card
+                            </div>
+                            <div class="card-body">
                                 This is some text within a card block.
                             </div>
                         </div>
@@ -239,7 +306,12 @@
     <script src="{{ asset('monster/assets/plugins/jquery/jquery.min.js') }}" ></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('monster/assets/plugins/bootstrap/js/tether.min.js') }}" ></script>
-    <script src="{{ asset('monster/assets/plugins/bootstrap/js/bootstrap.min.js') }}" ></script>
+    {{--  <script src="{{ asset('monster/assets/plugins/bootstrap/js/bootstrap.min.js') }}" ></script>  --}}
+
+    {{--  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>  --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{ asset('monster/js/jquery.slimscroll.js') }}" ></script>
     <!--Wave Effects -->
@@ -255,6 +327,27 @@
     <!-- ============================================================== -->
     <script src="{{ asset('monster/assets/plugins/styleswitcher/jQuery.style.switcher.js') }}" ></script>
     @yield('js')
+
+    @if (session('alert_success'))
+        <script>
+            alert(" {{ session('alert_success') }} ");
+        </script>
+    @endif
+    @if (session('alert_warning'))
+        <script>
+            alert(" {{ session('alert_warning') }} ");
+        </script>
+    @endif
+    @if (session('alert_danger'))
+        <script>
+            alert(" {{ session('alert_danger') }} ");
+        </script>
+    @endif
+    @if (session('alert_info'))
+        <script>
+            alert(" {{ session('alert_info') }} ");
+        </script>
+    @endif
 </body>
 
 </html>
