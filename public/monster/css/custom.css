@@ -2,3 +2,7 @@
     right: 1px !important;
     left: inherit !important;
 }
+
+.alert p {
+    margin: 5px 0px;
+}

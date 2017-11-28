@@ -88,11 +88,27 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'bail|required|unique:posts|max:255',
-            'body' => 'required',
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'address' => 'required|string',
+            'telp' => 'required|string|max:15|min:9',
         ]);
-        //
+
+        $user_id = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ])->id;
+
+        Profile::create([
+            'id' => $user_id,
+            'address' => $request->address,
+            'telp' => $request->telp
+        ]);
+
+        return redirect('users')->with('alert_success', 'User has been added!');
     }
 
     /**
